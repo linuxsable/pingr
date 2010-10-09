@@ -13,6 +13,7 @@ echo '-- Pinger Running --'
 
 for myHost in $HOSTS
 do
+  echo "Checking: $myHost"
   c=$(ping -c $PING_COUNT $myHost | grep 'received' | awk -F',' '{ print $2 }' | awk '{ print $1 }')
   if [ $c -eq 0 ]; then
     # Host is down
