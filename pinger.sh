@@ -1,9 +1,13 @@
 #!/bin/bash
+#
+# Author: @_ty
+#
+# Enjoy!
 
 # Seperate by whitespace
-HOSTS="192.168.1.1 mc.wearesquareone.com"
+HOSTS="127.0.0.1 google.com"
+EMAIL="test@example.com"
 PING_COUNT=4
-EMAIL="linuxsable@gmail.com"
 
 echo '-- Pinger Running --'
 
