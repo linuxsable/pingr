@@ -1,13 +1,21 @@
 # Author: @_ty
-# Enjoy!
+#
+# Made in Vegas. Enjoy!
+#
 require 'net/smtp'
 require 'twiliolib'
 require File.dirname(__FILE__) + '/lib/helpers'
 
-HOSTS = ['google.com', '192.168.1.1']
-EMAIL = 'linuxsable@gmail.com'
-PHONE_NUMBER = '408'
-PING_COUNT = 4
+# Update these. Leave arrays empty to disable features.
+HOSTS         = []
+EMAILS        = []
+PHONE_NUMBERS = []
+PING_COUNT    = 4
+
+# Twilio Config
+TWILIO_API_VERSION   = '2010-04-01'
+TWILIO_ACCOUNT_SID   = ''
+TWILIO_ACCOUNT_TOKEN = ''
 
 puts '-- Pingr running --'
 start_time = Time.now
@@ -18,7 +26,8 @@ HOSTS.each do |host|
   if c.to_i === 0
     message = "Host: #{host} is down (ping failed) at #{Time.now.strftime("%B %d, %Y")}"
     puts message
-    send_email_alert(message, EMAIL, host)
+    send_email_alerts(message, EMAILS, host)
+    send_text_alerts(TWILIO_ACCOUNT_SID, TWILIO_ACCOUNT_TOKEN, TWILIO_API_VERSION, PHONE_NUMBERS, message)
   else
     puts "Host: #{host} is up"
   end
