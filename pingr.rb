@@ -3,12 +3,13 @@
 require 'net/smtp'
 require 'twiliolib'
 
-HOSTS = ['192.168.1.1', 'google.com']
+HOSTS = ['google.com']
 EMAIL = 'linuxsable@gmail.com'
 PHONE_NUMBER = '408'
 PING_COUNT = 4
 
-puts '-- Pinger Running --'
+puts '-- Pinger running --'
+start_time = Time.now
 
 HOSTS.each do |host|
   puts "Checking #{host}"
@@ -22,4 +23,5 @@ HOSTS.each do |host|
   end
 end
 
-puts '-- Pinger Done --'
+elapsed_time = ("%.2f" % (Time.now - start_time))
+puts "-- Pinger done. Took #{elapsed_time} seconds --"
