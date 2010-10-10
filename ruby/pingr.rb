@@ -24,12 +24,12 @@ HOSTS.each do |host|
   puts "Checking #{host}.."
   c = run_ping(host, PING_COUNT)
   if c.to_i === 0
-    message = "Host: #{host} is down (ping failed) at #{Time.now.strftime("%B %d, %Y")}"
+    message = "Host #{host} is down (ping failed) at #{Time.now.strftime("%Y-%m-%d %I:%M%p")}"
     puts message
     send_email_alerts(message, EMAILS, host)
     send_text_alerts(TWILIO_ACCOUNT_SID, TWILIO_ACCOUNT_TOKEN, TWILIO_API_VERSION, PHONE_NUMBERS, message)
   else
-    puts "Host: #{host} is up"
+    puts "Host #{host} is up"
   end
 end
 
