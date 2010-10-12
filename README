@@ -1,6 +1,6 @@
-Simple server-uptime email alerts.
+Simple server uptime alerts.
 
-Example crontab entry for minutely checks with logs to pingr.log:
-  * * * * * sh /root/pingr/pingr.sh >> /root/pingr/pingr.log 2>&1
+Example crontab entry for minutely checks with logging:
+  * * * * * ruby /root/pingr/ruby/pingr.rb >> /root/pingr/pingr.log 2>&1
 
-TODO: Convert to Ruby and add Twilio text alerts.
+TODO: Add alert intervals so they don't spam.
