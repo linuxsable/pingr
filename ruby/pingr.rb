@@ -9,7 +9,7 @@ require File.dirname(__FILE__) + '/lib/helpers'
 require File.dirname(__FILE__) + '/lib/DB'
 
 # Hosts which need to be checked
-HOSTS = ['localhost']
+HOSTS = ['192.168.1.188']
 
 # Emails which alerts will be sent to
 EMAILS = ['linuxsable@gmail.com']

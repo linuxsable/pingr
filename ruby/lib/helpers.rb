@@ -4,6 +4,10 @@ end
 
 def send_email_alerts(msg, emails = [], host)
   emails.each do |email|
+    last_sent = DB.get_record(email)
+    if !last_sent
+      DB.save_or_update_time(email)
+    end
     `echo "#{msg}" | mail -s "ALERT: Host #{host} is down!" #{email}`
     puts "Email alert sent to #{email}!"
   end

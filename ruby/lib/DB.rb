@@ -29,7 +29,7 @@ class DB
   
   # Return 'new' if it's a new save,
   # 'update' if it's an update
-  def self.update_record(record)
+  def self.save_or_update_time(record)
     data = self.load
     out = 'update'
     if data[record] == nil
