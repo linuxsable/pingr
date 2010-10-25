@@ -9,10 +9,10 @@ require File.dirname(__FILE__) + '/lib/helpers'
 require File.dirname(__FILE__) + '/lib/DB'
 
 # Hosts which need to be checked
-HOSTS = ['192.168.1.188']
+HOSTS = []
 
 # Emails which alerts will be sent to
-EMAILS = ['linuxsable@gmail.com']
+EMAILS = []
 
 # Phone numbers which texts will be sent to
 PHONE_NUMBERS = []
@@ -21,13 +21,15 @@ PHONE_NUMBERS = []
 # This shouldn't need to be changed.
 PING_COUNT = 4
 
-# Span in minutes between alerts
-ALERT_INTERVAL = 5
+# Span in minutes between alerts.
+# "0" == disabled
+ALERT_INTERVAL = 0
 
-# Twilio Config
+# Twilio config
 TWILIO_API_VERSION   = '2010-04-01'
 TWILIO_ACCOUNT_SID   = ''
 TWILIO_ACCOUNT_TOKEN = ''
+TWILIO_PHONE_NUMBER  = ''
 
 puts '-- Pingr running --'
 
@@ -47,4 +49,5 @@ HOSTS.each do |host|
 end
 
 elapsed_time = ("%.2f" % (Time.now - start_time))
-puts "-- Pingr done - took #{elapsed_time} seconds - #{HOSTS.count} host(s) checked --"
+puts "-- Pingr done --"
+puts "[took #{elapsed_time} seconds - #{HOSTS.count} host(s) checked]"

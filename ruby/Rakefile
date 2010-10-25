@@ -11,7 +11,7 @@ task :console do
   system("irb -r #{Dir.pwd}/pingr")
 end
 
-task :reset_db do
+task :db_reset do
   print "Reseting the db.."
   system("rm #{Dir.pwd}/db/db.yaml")
   system("touch #{Dir.pwd}/db/db.yaml")
