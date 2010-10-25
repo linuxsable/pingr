@@ -3,14 +3,26 @@
 # Made in Vegas. Enjoy!
 #
 require 'net/smtp'
+require 'yaml'
 require 'twiliolib'
 require File.dirname(__FILE__) + '/lib/helpers'
+require File.dirname(__FILE__) + '/lib/DB'
 
-# Update these. Leave arrays empty to disable features.
-HOSTS         = []
-EMAILS        = []
+# Hosts which need to be checked
+HOSTS = ['localhost']
+
+# Emails which alerts will be sent to
+EMAILS = []
+
+# Phone numbers which texts will be sent to
 PHONE_NUMBERS = []
-PING_COUNT    = 4
+
+# Number of times ping checks the host.
+# This shouldn't need to be changed.
+PING_COUNT = 4
+
+# Span in minutes between alerts
+ALERT_INTERVAL = 5
 
 # Twilio Config
 TWILIO_API_VERSION   = '2010-04-01'
@@ -18,7 +30,9 @@ TWILIO_ACCOUNT_SID   = ''
 TWILIO_ACCOUNT_TOKEN = ''
 
 puts '-- Pingr running --'
+
 start_time = Time.now
+db = DB.new
 
 HOSTS.each do |host|
   puts "Checking #{host}.."
@@ -34,4 +48,4 @@ HOSTS.each do |host|
 end
 
 elapsed_time = ("%.2f" % (Time.now - start_time))
-puts "-- Pingr done. Took #{elapsed_time} seconds --"
+puts "-- Pingr done - took #{elapsed_time} seconds - #{HOSTS.count} host(s) checked --"

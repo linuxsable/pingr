@@ -4,6 +4,7 @@ end
 
 def send_email_alerts(msg, emails = [], host)
   emails.each do |email|
+    
     `echo "#{msg}" | mail -s "ALERT: Host #{host} is down!" #{email}`
     puts "Email alert sent to #{email}!"
   end
