@@ -3,4 +3,4 @@ Simple server uptime alerts.
 Example crontab entry for minutely checks with logging:
   * * * * * ruby /root/pingr/ruby/pingr.rb >> /root/pingr/pingr.log 2>&1
 
-TODO: Add alert intervals so they don't spam.
+Shell directory and script kept as legacy.
