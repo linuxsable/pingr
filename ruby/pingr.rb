@@ -21,9 +21,13 @@ PHONE_NUMBERS = []
 # This shouldn't need to be changed.
 PING_COUNT = 4
 
-# Span in minutes between alerts.
+# Span in minutes between email alerts.
 # "0" == disabled
-ALERT_INTERVAL = 0
+EMAIL_ALERT_INTERVAL = 0
+
+# Span in minutes between text alerts.
+# "0" == disabled
+TEXT_ALERT_INTERVAL = 0
 
 # Twilio config
 TWILIO_API_VERSION   = '2010-04-01'
@@ -49,5 +53,5 @@ HOSTS.each do |host|
 end
 
 elapsed_time = ("%.2f" % (Time.now - start_time))
-puts "-- Pingr done --"
 puts "[took #{elapsed_time} seconds - #{HOSTS.count} host(s) checked]"
+puts "-- Pingr done --"

@@ -8,7 +8,7 @@ def send_email_alerts(msg, emails = [], host)
     last_sent = DB.get_record(email)
     
     if last_sent
-      if Time.now > (last_sent + (ALERT_INTERVAL * 60))
+      if Time.now > (last_sent + (EMAIL_ALERT_INTERVAL * 60))
         DB.save_or_update_time(email)
         send = true
       else
@@ -33,7 +33,7 @@ def send_text_alerts(account_sid, account_token, api_version, phone_nums = [], m
     last_sent = DB.get_record(phone_num)
     
     if last_sent
-      if Time.now > (last_sent + (ALERT_INTERVAL * 60))
+      if Time.now > (last_sent + (TEXT_ALERT_INTERVAL * 60))
         DB.save_or_update_time(phone_num)
         send = true
       else
