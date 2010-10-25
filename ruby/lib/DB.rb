@@ -1,35 +1,42 @@
 # Yaml flat database
 class DB
   @@database_path = File.dirname(__FILE__) + '/../db/db.yaml'
-    
-  def initialize
-    load
-    p get_last_email_sent_date('linuxsable@gmail.com')
-  end
   
-  def save(data)
+  def self.save(data)
     open(@@database_path, 'w') { |f| YAML.dump(data, f) }
   end
   
-  def load
-    @data = open(@@database_path) { |f| YAML.load(f) }
+  def self.load
+    out = {}
+    open(@@database_path) do |f|
+      loaded_data = YAML.load(f)
+      if loaded_data
+        out = loaded_data
+      end
+    end
+    out
   end
   
-  # email => last_sent
-  def get_last_email_sent_date(email)
-    @data[email]
+  # Returns false if record can't be found
+  def self.get_record(record)
+    data = self.load
+    if data[record] == nil
+      false
+    else
+      data[record]
+    end
   end
   
-  def update_last_sent_date(email)
-    @data[email] => Time.now
-  end
-  
-  # phone_number => last_sent
-  def get_last_text_sent_date(phone_number)
-    @data[phone_number]
-  end
-  
-  def updated_last_text_sent(phone_number)
-    @data[phone_number] => Time.now
+  # Return 'new' if it's a new save,
+  # 'update' if it's an update
+  def self.update_record(record)
+    data = self.load
+    out = 'update'
+    if data[record] == nil
+      out = 'new'
+    end
+    data[record] = Time.new
+    self.save(data)
+    out
   end
 end

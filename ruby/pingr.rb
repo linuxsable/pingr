@@ -12,7 +12,7 @@ require File.dirname(__FILE__) + '/lib/DB'
 HOSTS = ['localhost']
 
 # Emails which alerts will be sent to
-EMAILS = []
+EMAILS = ['linuxsable@gmail.com']
 
 # Phone numbers which texts will be sent to
 PHONE_NUMBERS = []
@@ -32,7 +32,6 @@ TWILIO_ACCOUNT_TOKEN = ''
 puts '-- Pingr running --'
 
 start_time = Time.now
-db = DB.new
 
 HOSTS.each do |host|
   puts "Checking #{host}.."

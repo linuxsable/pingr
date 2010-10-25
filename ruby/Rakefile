@@ -1,0 +1,19 @@
+task :setup do
+  path = Dir.pwd + '/db/db.yaml'
+  puts "touch #{path}"
+  system("touch #{path}")
+  puts "chmod 777 #{path}"
+  system("chmod 777 #{path}")
+end
+
+task :console do
+  puts "Firing up the console.."
+  system("irb -r #{Dir.pwd}/pingr")
+end
+
+task :reset_db do
+  print "Reseting the db.."
+  system("rm #{Dir.pwd}/db/db.yaml")
+  system("touch #{Dir.pwd}/db/db.yaml")
+  puts " done"
+end
